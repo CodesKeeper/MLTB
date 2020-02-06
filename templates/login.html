@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>登录</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8"/>
+    <meta name="keywords" content=""/>
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <link rel="stylesheet" href="{% static 'css/style1.css' %}" type="text/css" media="all"/>
+    <link rel="stylesheet" href="{% static 'css/../static/plugins/font-awesome/css/font-awesome.min.css' %}">
+    <link href="{% static 'images/../static/img/my.ico' %}" rel="shortcut icon">
+</head>
+<body>
+<div id="bg">
+    <canvas></canvas>
+    <canvas></canvas>
+    <canvas></canvas>
+</div>
+<h1 style="font-style:normal" >机器学习算法演示系统</h1>
+<div class="sub-main-w3">
+    <form action="#" method="post">
+        {% csrf_token %}
+        <h2>请登录
+            <i class="fas fa-level-down-alt"></i>
+        </h2>
+        <div class="form-style-agile">
+            <label>
+                <i class="fas fa-user"></i>
+                用户名
+            </label>
+            <input placeholder="请输入用户名" name="nick_name" type="text" required="">
+        </div>
+        <div class="form-style-agile">
+            <label>
+                <i class="fas fa-unlock-alt"></i>
+                密码
+            </label>
+            <input placeholder="请输入密码" name="password" type="password" required="">
+        </div>
+        <div class="wthree-text">
+            <ul>
+                <li>
+                    <label class="anim">
+                        <input type="checkbox" class="checkbox" required="">
+                        <span>记住密码</span>
+                    </label>
+                </li>
+                <li>
+                    <a href="#">忘记密码?</a>
+                </li>
+            </ul>
+        </div>
+        <input type="submit" value="登录">
+    </form>
+</div>
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/canva_moving_effect.js' %}"></script>
+</body>
+</html>

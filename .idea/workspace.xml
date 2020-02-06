@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c3a11801-282c-4842-917f-0684b6a14eb7" name="Default" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="mldb@localhost" type="feb32156:DbDataSourceImpl" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1VSbOPx8P4vs8Hfswa3ZnURMfIi" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
+    <property name="database.console.LAST_STATE" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.templateLanguages.PyTemplateLanguageModulesConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\MLTB\static\js" />
+      <recent name="E:\MLTB\static\css" />
+      <recent name="E:\MLTB\static" />
+      <recent name="E:\MLTB\templates\algorithm\example" />
+      <recent name="E:\MLTB\ALGDemo" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\MLTB\static\img" />
+      <recent name="E:\MLTB\static" />
+      <recent name="E:\MLTB\static\plugins\font-awesome\css" />
+      <recent name="E:\MLTB\static\css" />
+      <recent name="E:\MLTB\templates" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Django server.MLTB">
+    <configuration name="urls" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="MLTB" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/algorithmPerformance" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/algorithmPerformance/urls.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="MLTB" type="Python.DjangoServer" factoryName="Django server">
+      <module name="MLTB" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="DJANGO_SETTINGS_MODULE" value="MLTB.settings" />
+        <env name="PATH" value="D:\Anaconda\Scripts" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8006" />
+      <option name="host" value="" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="http://127.0.0.1:8006/document" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Django server.MLTB" />
+      <item itemvalue="Python.urls" />
+    </list>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c3a11801-282c-4842-917f-0684b6a14eb7" name="Default" comment="" />
+      <created>1534056872625</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1534056872625</updated>
+      <workItem from="1577249419207" duration="3647000" />
+      <workItem from="1577263066723" duration="146000" />
+      <workItem from="1577263233897" duration="944000" />
+      <workItem from="1577264352373" duration="11253000" />
+      <workItem from="1577601783866" duration="22283000" />
+      <workItem from="1577875256601" duration="19485000" />
+      <workItem from="1578031888735" duration="10835000" />
+      <workItem from="1578303005030" duration="68887000" />
+      <workItem from="1578657316029" duration="23635000" />
+      <workItem from="1578999387130" duration="5227000" />
+      <workItem from="1579014636705" duration="1256000" />
+      <workItem from="1579054648660" duration="162000" />
+      <workItem from="1579055972940" duration="4674000" />
+      <workItem from="1579100327448" duration="1115000" />
+      <workItem from="1579148460520" duration="3217000" />
+      <workItem from="1579156716104" duration="3997000" />
+      <workItem from="1579179761494" duration="4221000" />
+      <workItem from="1579219277890" duration="2875000" />
+      <workItem from="1579271326614" duration="44000" />
+      <workItem from="1579271395996" duration="2322000" />
+      <workItem from="1579521016627" duration="616000" />
+      <workItem from="1579527336320" duration="647000" />
+      <workItem from="1579581906612" duration="1417000" />
+      <workItem from="1579842445416" duration="1382000" />
+      <workItem from="1580002189976" duration="1667000" />
+      <workItem from="1580102924763" duration="4251000" />
+      <workItem from="1580299645318" duration="3245000" />
+      <workItem from="1580377891042" duration="1566000" />
+      <workItem from="1580387921186" duration="1190000" />
+      <workItem from="1580797952663" duration="2717000" />
+      <workItem from="1580911136072" duration="1689000" />
+      <workItem from="1580955854528" duration="1863000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="679" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1578577432405">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="679" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1578577432405" />
+    <state x="698" y="323" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1578662770242">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="698" y="323" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1578662770242" />
+    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1577882674951">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1577882674951" />
+    <state x="722" y="291" key="FileChooserDialogImpl" timestamp="1578639803572">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="722" y="291" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1578639803572" />
+    <state width="1877" height="242" key="GridCell.Tab.0.bottom" timestamp="1578744962454">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="242" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1578744962454" />
+    <state width="1877" height="242" key="GridCell.Tab.0.center" timestamp="1578744962454">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="242" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1578744962454" />
+    <state width="1877" height="242" key="GridCell.Tab.0.left" timestamp="1578744962454">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="242" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1578744962454" />
+    <state width="1877" height="242" key="GridCell.Tab.0.right" timestamp="1578744962454">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="242" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1578744962454" />
+    <state width="1877" height="347" key="GridCell.Tab.1.bottom" timestamp="1578559092892">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="347" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1578559092892" />
+    <state width="1877" height="347" key="GridCell.Tab.1.center" timestamp="1578559092892">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="347" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1578559092892" />
+    <state width="1877" height="347" key="GridCell.Tab.1.left" timestamp="1578559092892">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="347" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1578559092892" />
+    <state width="1877" height="347" key="GridCell.Tab.1.right" timestamp="1578559092892">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="347" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1578559092892" />
+    <state x="463" y="165" key="SettingsEditor" timestamp="1578743014107">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="463" y="165" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1578743014107" />
+    <state x="652" y="348" key="com.intellij.ide.util.TipDialog" timestamp="1577249421149">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="652" y="348" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1577249421149" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1578650818540">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1578650818540" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/MLTB$urls.coverage" NAME="urls Coverage Results" MODIFIED="1578559086896" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/algorithmPerformance" />
+  </component>
+</project>

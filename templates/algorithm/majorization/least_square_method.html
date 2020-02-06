@@ -1,0 +1,357 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title_name %}最小二乘法{% endblock title_name %}
+{% block optimize_algorithm_open %}menu-open{% endblock optimize_algorithm_open %}
+{% block optimize_algorithm_light %}active{% endblock optimize_algorithm_light %}
+{% block least_square_light %}active{% endblock least_square_light %}
+{% block main_part %}
+    <section class="col-lg-12 connectedSortable">
+        <div id="main" style="width: 100%;height:600px;margin-top:3%;"></div>
+    </section>
+    <script>
+        $(document).ready(function () {
+            // 初始化画图函数
+            $(function () {
+                var data = {{ data|safe }}
+                    drawBar("main", data)
+            });
+// 在键盘按下并释放及提交后验证提交表单
+            $(function () {
+                $("#signupForm").validate({
+                    onkeyup: true,
+                    rules: {
+                        k: {
+                            range: [1, 1000],
+                            required: true
+                        },
+                        b: {
+                            range: [1, 1000],
+                            required: true
+                        },
+                        N_true: {
+                            range: [10, 200],
+                            required: true
+                        },
+                        N_noise: {
+                            range: [10, 200],
+                            required: true
+                        },
+                        mu: {
+                            range: [1, 50],
+                            required: true
+                        },
+                        sigma: {
+                            range: [1, 50],
+                            required: true
+                        },
+                    },
+                    messages: {}
+                });
+            });
+
+            data = {};
+            $.ajaxSetup({  // ajaxSetup() 方法为将来的 AJAX 请求设置默认值
+                data: {csrfmiddlewaretoken: '{{ csrf_token }}'},  // data键表示规定要发送到服务器的数据
+            });
+            $('#tijiao').click(function () {  // 当提交表单时，会发生submit事件。该事件只适用于表单元素
+                // submit()方法触发submit事件，或规定当发生submit事件时运行的函数
+                if (!$("#signupForm").valid()) {
+                    // alert("数据不合理!");
+                    return;
+                }
+                data.k = $("#k").val();  // 对id为k的元素执行val()方法，以获取input输入的值
+                data.b = $("#b").val();  // 同上
+                data.N_true = $("#N_true").val();  // 同上
+                data.N_noise = $("#N_noise").val();  // 同上
+                data.mu = $("#mu").val();  // 同上
+                data.sigma = $("#sigma").val();  // 同上
+                $.ajax({  //ajax()方法用于执行 AJAX（异步 HTTP）请求，所有的jQuery AJAX方法都使用ajax()方法
+                    type: "POST",  // 规定请求的类型（GET 或 POST）
+                    data: data,  // 规定要发送到服务器的数据
+                    url: "{% url 'theory:LSM' %}", //后台处理函数的url 这里用的是static url 需要与urls.py中的name一致
+                    cache: false,  // 布尔值，表示浏览器是否缓存被请求页面。默认是 true
+                    dataType: "json",  // 预期的服务器响应的数据类型
+                    error: erryFunction,  //错误执行方法
+                    success: succFunction //成功执行方法
+                });
+
+                function succFunction(data) {  // 当请求成功时运行的函数
+                    drawBar("main", data);
+                }
+
+                function erryFunction() {
+                    alert('数据请求错误！')
+                }
+
+                return false;
+            });
+
+            function drawBar(divId, data) {
+                var myChart = echarts.init(document.getElementById(divId));
+                var option = {
+                    title: {
+                        text: '线性回归仿真数据',
+                    },
+                    grid: {
+                        left: '10%',
+                        right: '7%',
+                        bottom: '3%',
+                        containLabel: false
+                    },
+                    tooltip: {
+                        // trigger: 'axis',
+                        showDelay: 0,
+                        formatter: function (params) {
+                            if (params.value.length > 1) {
+                                return params.seriesName + ' :<br/>'
+                                    + params.value[0] + '，'
+                                    + params.value[1];
+                            } else {
+                                return params.seriesName + ' :<br/>'
+                                    + params.name + ' : '
+                                    + params.value;
+                            }
+                        },
+                        axisPointer: {
+                            show: true,
+                            type: 'cross',
+                            lineStyle: {
+                                type: 'dashed',
+                                width: 100
+                            }
+                        }
+                    },
+                    toolbox: {
+                        feature: {
+                            dataZoom: {},
+                            brush: {
+                                type: ['rect', 'polygon', 'clear']
+                            },
+                            dataView: {
+                                show: true,
+                                readOnly: false
+                            },
+                            saveAsImage: {
+                                show: true
+                            }
+                        }
+                    },
+                    brush: {},
+                    legend: {
+                        data: ['噪声数据', '标准数据', '仿真数据', '标准直线', '回归直线'],
+                        left: 'center'
+                    },
+                    xAxis: [
+                        {
+                            type: 'value',
+                            scale: true,
+                            axisLabel: {
+                                formatter: '{value} '
+                            },
+                            splitLine: {
+                                show: false
+                            }
+                        }
+                    ],
+                    yAxis: [
+                        {
+                            type: 'value',
+                            scale: true,
+                            axisLabel: {
+                                formatter: '{value} '
+                            },
+                            splitLine: {
+                                show: false
+                            }
+                        }
+                    ],
+                    series: [
+                        {
+                            name: '噪声数据',
+                            type: 'scatter',
+                            data: data.Noisy_Points,
+                            markArea: {
+                                silent: true,
+                                itemStyle: {
+                                    normal: {
+                                        color: 'transparent',
+                                        borderWidth: 1,
+                                        borderType: 'dashed'
+                                    }
+                                },
+                                data: [[{
+                                    name: '噪声数据分布区间',
+                                    xAxis: 'min',
+                                    yAxis: 'min'
+                                }, {
+                                    xAxis: 'max',
+                                    yAxis: 'max'
+                                }]]
+                            },
+                            markPoint: {
+                                data: [
+                                    {type: 'max', name: '最大值'},
+                                    {type: 'min', name: '最小值'}
+                                ]
+                            },
+                            markLine: {
+                                lineStyle: {
+                                    normal: {
+                                        type: 'solid'
+                                    }
+                                },
+                                data: [
+                                    {type: 'average', name: '平均值'},
+                                    {xAxis: 160}
+                                ]
+                            }
+                        },
+                        {
+                            name: '标准数据',
+                            type: 'scatter',
+                            data: data.True_Points,
+                            markArea: {
+                                silent: true,
+                                itemStyle: {
+                                    normal: {
+                                        color: 'transparent',
+                                        borderWidth: 1,
+                                        borderType: 'dashed'
+                                    }
+                                },
+                                data: [[{
+                                    name: '标准数据分布区间',
+                                    xAxis: 'min',
+                                    yAxis: 'min'
+                                }, {
+                                    xAxis: 'max',
+                                    yAxis: 'max'
+                                }]]
+                            },
+                            markPoint: {
+                                data: [
+                                    {type: 'max', name: '最大值'},
+                                    {type: 'min', name: '最小值'}
+                                ]
+                            },
+                            markLine: {
+                                lineStyle: {
+                                    normal: {
+                                        type: 'solid'
+                                    }
+                                },
+                                data: [
+                                    {type: 'average', name: '平均值'},
+                                    {xAxis: 170}
+                                ]
+                            }
+                        },
+                        {
+                            name: '仿真数据',
+                            type: 'scatter',
+                            data: data.Simulation_data,
+                            markArea: {
+                                silent: true,
+                                itemStyle: {
+                                    normal: {
+                                        color: 'transparent',
+                                        borderWidth: 1,
+                                        borderType: 'dashed'
+                                    }
+                                },
+                                data: [[{
+                                    name: '仿真数据分布区间',
+                                    xAxis: 'min',
+                                    yAxis: 'min'
+                                }, {
+                                    xAxis: 'max',
+                                    yAxis: 'max'
+                                }]]
+                            },
+                            markPoint: {
+                                data: [
+                                    {type: 'max', name: '最大值'},
+                                    {type: 'min', name: '最小值'}
+                                ]
+                            },
+                            markLine: {
+                                lineStyle: {
+                                    normal: {
+                                        type: 'solid'
+                                    }
+                                },
+                                data: [
+                                    {type: 'average', name: '平均值'},
+                                    {xAxis: 170}
+                                ]
+                            }
+                        },
+                        {
+                            name: '标准直线',
+                            type: 'line',
+                            showSymbol: false,
+                            data: data.True_Points,
+                            lineStyle: {
+                                color: 'red',
+                                width: 3
+                            },
+                            markPoint: {
+                                itemStyle: {
+                                    normal: {
+                                        color: 'transparent'
+                                    }
+                                },
+                                label: {
+                                    normal: {
+                                        show: true,
+                                        position: 'left',
+                                        // formatter: myRegression.expression,
+                                        textStyle: {
+                                            color: '#333',
+                                            fontSize: 14
+                                        }
+                                    }
+                                },
+                                // data: [{
+                                // coord: myRegression.points[myRegression.points.length - 1]
+                                // }]
+                            }
+                        },
+                        {
+                            name: '回归直线',
+                            type: 'line',
+                            showSymbol: false,
+                            data: data.Fitted_data,
+                            lineStyle: {
+                                color: 'blue',
+                                width: 3
+                            },
+                            markPoint: {
+                                itemStyle: {
+                                    normal: {
+                                        color: 'transparent'
+                                    }
+                                },
+                                label: {
+                                    normal: {
+                                        show: true,
+                                        position: 'left',
+                                        // formatter: myRegression.expression,
+                                        textStyle: {
+                                            color: '#333',
+                                            fontSize: 14
+                                        }
+                                    }
+                                },
+                                // data: [{
+                                // coord: myRegression.points[myRegression.points.length - 1]
+                                // }]
+                            }
+                        }
+                    ]
+                };
+                myChart.setOption(option);
+            }
+        });
+    </script>
+{% endblock main_part %}

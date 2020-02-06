@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>注册</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=PT+Sans:400,700'>
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Oleo+Script:400,700'>
+    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <link href="{% static 'img/my.ico' %}" rel="shortcut icon">
+</head>
+<body>
+<div class="register-container container">
+    <div class="row">
+        <div class="register span6">
+            <form class="form-horizontal" role="form" method="post" action="">
+                {% csrf_token %}
+                <p>
+                    <label for="id_username">用户名:</label>
+                    <input type="text" name="username" maxlength="150" autofocus required id="id_username"/>
+                </p>
+                {% if register_form.errors.username %}
+                    <p>用户名不合法</p>
+                {% endif %}
+                {% if register_form.errors %}
+                    {{ register_form.errors }}
+                {% endif %}
+                <p>
+                    <label for="id_password1">密码:</label>
+                    <input type="password" name="password1" required id="id_password1"/>
+                </p>
+                {% if register_form.errors.password2 %}
+                    <script>alert('密码长度多1短')</script>
+                {% endif %}
+                <p>
+                    <label for="id_password2">密码确认:</label>
+                    <input type="password" name="password2" required id="id_password2"/>
+                </p>
+                <button type="submit">注册</button>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="{% static 'assets/js/jquery-1.8.2.min.js' %}"></script>
+<script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'assets/js/jquery.backstretch.min.js' %}"></script>
+<script src="{% static 'assets/js/scripts.js' %}"></script>
+</body>
+</html>

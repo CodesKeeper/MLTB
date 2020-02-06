@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title_name %}文档{% endblock title_name %}
+{% block document_light %}active{% endblock document_light %}
+{% block main_part %}
+    <section class="col-lg-12 connectedSortable">
+        <div id="main" style="width: 100%;height:600px;margin-top:3%;">
+            <h3 align="center">支持向量机（Support Vector Machine）</h3>
+            <h4>一、简介</h4>
+            <p>支持向量机（support vector machines）是一种二分类模型，它的目的是寻找一个超平面来对样本进行分割，
+                分割的原则是间隔最大化，最终转化为一个凸二次规划问题来求解。由简至繁的模型包括：
+                当训练样本线性可分时，通过硬间隔最大化，学习一个线性可分支持向量机；
+                当训练样本近似线性可分时，通过软间隔最大化，学习一个线性支持向量机；
+                当训练样本线性不可分时，通过核技巧和软间隔最大化，学习一个非线性支持向量机；</p>
+            <ul>
+                <li>当训练样本线性可分时，通过硬间隔最大化，学习一个线性可分支持向量机；</li>
+                <li>当训练样本近似线性可分时，通过软间隔最大化，学习一个线性支持向量机；</li>
+                <li>当训练样本线性不可分时，通过核技巧和软间隔最大化，学习一个非线性支持向量机；</li>
+            </ul>
+            <h4>二、线性可分支持向量机</h4>
+            <p><strong>1、间隔最大化和支持向量</strong></p>
+            <p>
+                如果一个线性函数能够将样本分开，称这些数据样本是线性可分的。那么什么是线性函数呢？其实很简单，在二维空间中就是一条直线，在三维空间中就是一个平面，以此类推，如果不考虑空间维数，这样的线性函数统称为<strong>超平面</strong>。我们看一个简单的二维空间的例子，O代表正类，X代表负类，样本是线性可分的，但是很显然不只有这一条直线可以将样本分开，而是有无数条，我们所说的线性可分支持向量机就对应着能将数据正确划分并且<strong>间隔最大</strong>的直线。
+            </p>
+            <center>
+                <img src="{% static 'dist/../../static/img/001.png' %}" width="20%">
+            </center>
+            <p>下面我们开始计算间隔，其实间隔就等于两个异类支持向量的差在 w 上的投影，即：<br>
+            <center>
+                <img src="{% static 'dist/../../static/img/002.png' %}" width="20%">
+            </center>
+            <p>其中x ⃗_+和x ⃗_-分别表示两个正负支持向量，因为x ⃗_+和x ⃗_-满足y_i (w^T x_i+b)=1，即：</p>
+        </div>
+    </section>
+{% endblock main_part %}

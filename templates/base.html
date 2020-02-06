@@ -1,0 +1,825 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{% block title_name %}{% endblock title_name %}</title> {# 标题的名称 #}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="{% static 'css/adminlte.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap3-wysihtml5.min.css' %}">
+    <link href="{% static 'img/my.ico' %}" rel="shortcut icon">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/adminlte.js' %}"></script>
+    <script src="{% static '/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="{% static 'js/dashboard.js' %}"></script>
+    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/lib/jquery.js"></script>
+    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script>
+    <script src="{% static 'echarts.min.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts-gl/dist/echarts-gl.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts-stat/dist/ecStat.min.js"></script>
+    <style>
+        label {
+            width: 200px;
+            margin-left: 20px;
+        }
+
+        .high {
+            color: red;
+        }
+
+        .msg {
+            font-size: 13px;
+            margin-top: -100px;
+        }
+
+        .onError {
+            color: red;
+        }
+
+        .onSuccess {
+            color: green;
+        }
+    </style>
+</head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+    <!--导航栏-->
+    <nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
+            </li>
+        </ul>
+    </nav>
+    <!--导航栏-->
+    <!--左侧菜单栏-->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <a href="#" class="brand-link">
+            <img src="{% static 'img/AdminLTELogo.png' %}" alt="AdminLTE Logo"
+                 class="brand-image img-circle elevation-3"
+                 style="opacity: .8">
+            <span class="brand-text font-weight-light">Machine Learning</span>
+        </a>
+        <div class="sidebar">
+            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                <div class="image">
+                    <img src="{% static 'img/user2-160x160.jpg' %}" class="img-circle elevation-2"
+                         alt="User Image">
+                </div>
+                <div class="info">
+                    <a href="#" class="d-block">Administrator</a>
+                </div>
+            </div>
+            <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                    data-accordion="true">
+                    <li class="nav-item">
+                        <a href="{% url 'document' %}"
+                           class="nav-link a1 {% block document_light %}{% endblock document_light %}">  {# 文档一级菜单高亮 #}
+                            <i class="nav-icon fa fa-file"></i>
+                            <p>文档</p>
+                        </a>
+                    </li>
+                    <li class="nav-header">算法</li>
+                    <li class="nav-item has-treeview
+                            {% block simulation_data_open %}{% endblock simulation_data_open %}">
+                        {# 仿真数据一级菜单开关 menu-open #}
+                        <a href="#"
+                           class="nav-link a1 {% block simulation_data_light %}{% endblock simulation_data_light %}">
+                            {# 仿真数据一级菜单高亮 #}
+                            <i class="nav-icon fa fa-bar-chart-o"></i>
+                            <p>
+                                仿真数据
+                                <i class="right fa fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{% url 'theory:LSD' %}" class="nav-link
+
+
+                                        {% block regression_simulation_light %}{% endblock regression_simulation_light %}">
+                                    {# 回归仿真数据二级菜单高亮 #}
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>
+                                        回归模型仿真数据
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{% url 'theory:classify_data' %}" class="nav-link
+                                        {% block classify_simulation_light %}{% endblock classify_simulation_light %}">
+                                    {# 分类仿真数据二级菜单高亮 #}
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>
+                                        分类模型仿真数据
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{% url 'theory:cluster_data' %}" class="nav-link
+                                        {% block cluster_simulation_light %}{% endblock cluster_simulation_light %}">
+                                    {# 聚类仿真数据二级菜单高亮 #}
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>
+                                        聚类模型仿真数据
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item has-treeview
+                            {% block optimize_algorithm_open %}{% endblock optimize_algorithm_open %}">
+                        <a href="#"
+                           class="nav-link a1
+                                   {% block optimize_algorithm_light %}{% endblock optimize_algorithm_light %}">
+                            {# 优化算法一级菜单高亮 #}
+                            <i class="nav-icon fa fa-dashboard"></i>
+                            <p>
+                                预处理及优化算法
+                                <i class="right fa fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{% url 'theory:LSM' %}"
+                                   class="nav-link {% block least_square_light %}{% endblock least_square_light %}">
+                                    {# 最小二乘法二级菜单高亮 #}
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>
+                                        最小二乘法
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{% url 'theory:BGD' %}"
+                                   class="nav-link
+
+
+
+                                           {% block batch_gradient_descent_light %}{% endblock batch_gradient_descent_light %}">
+                                    {# 批量梯度下降二级菜单高亮 #}
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>
+                                        批量梯度下降
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{% url 'theory:SGD' %}"
+                                   class="nav-link
+
+
+
+                                           {% block stochastic_gradient_descent_light %}{% endblock stochastic_gradient_descent_light %}">
+                                    {# 随机梯度下降二级菜单高亮 #}
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>
+                                        随机梯度下降
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item has-treeview
+                            {% block linear_regression_open %}{% endblock linear_regression_open %}">
+                        <a href="#"
+                           class="nav-link a1
+                                   {% block linear_regression_light %}{% endblock linear_regression_light %}">
+                            <i class="nav-icon fa fa fa-line-chart"></i>
+                            <p>
+                                线性回归
+                                <i class="right fa fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{% url 'theory:LR' %}"
+                                   class="nav-link {% block lr_theory_light %}{% endblock lr_theory_light %}">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>
+                                        基本原理
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{% url 'performance:LR' %}" class="nav-link
+
+
+                                        {% block lr_performance_analyze_light %}{% endblock lr_performance_analyze_light %}">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>
+                                        性能分析
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{% url 'example:LR' %}"
+                                   class="nav-link {% block lr_application_light %}{% endblock lr_application_light %}">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>
+                                        基本应用
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item has-treeview
+                            {% block logistic_regression_open %}{% endblock logistic_regression_open %}">
+                        <a href="#" class="nav-link a1
+                                {% block logistic_regression_light %}{% endblock logistic_regression_light %}">
+                            <i class="nav-icon fa fa-area-chart"></i>
+                            <p>
+                                Logistic回归
+                                <i class="right fa fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{% url 'theory:LOR' %}"
+                                   class="nav-link {% block lor_theory_light %}{% endblock lor_theory_light %}">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>
+                                        基本原理
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{% url 'performance:LOR' %}" class="nav-link
+
+
+                                        {% block lor_performance_analyze_light %}{% endblock lor_performance_analyze_light %}">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>
+                                        性能分析
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{% url 'example:LOR' %}" class="nav-link
+                                        {% block lor_application_light %}{% endblock lor_application_light %}">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>
+                                        基本应用
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item has-treeview {% block naive_bayes_open %}{% endblock naive_bayes_open %}">
+                        <a href="#" class="nav-link a1 {% block naive_bayes_light %}{% endblock naive_bayes_light %}">
+                            <i class="nav-icon fa fa-pie-chart"></i>
+                            <p>
+                                朴素贝叶斯
+                                <i class="right fa fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{% url 'theory:NB' %}"
+                                   class="nav-link {% block nb_theory_light %}{% endblock nb_theory_light %}">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>
+                                        基本原理
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{% url 'performance:NB' %}" class="nav-link
+
+
+                                        {% block nb_performance_analyze_light %}{% endblock nb_performance_analyze_light %}">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>
+                                        性能分析
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{% url 'example:NB' %}"
+                                   class="nav-link {% block nb_application_light %}{% endblock nb_application_light %}">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>
+                                        基本应用
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item has-treeview
+                            {% block k_nearest_neighbor_open %}{% endblock k_nearest_neighbor_open %}">
+                        <a href="#"
+                           class="nav-link a1
+                                   {% block k_nearest_neighbor_light %}{% endblock k_nearest_neighbor_light %}">
+                            <i class="nav-icon fa fa-bar-chart"></i>
+                            <p>
+                                K-近邻
+                                <i class="right fa fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{% url 'theory:KNN' %}"
+                                   class="nav-link {% block knn_theory_light %}{% endblock knn_theory_light %}">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>
+                                        基本原理
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{% url 'performance:KNN' %}" class="nav-link
+
+
+                                        {% block knn_performance_analyze_light %}{% endblock knn_performance_analyze_light %}">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>
+                                        性能分析
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{% url 'example:KNN' %}" class="nav-link
+                                        {% block knn_application_light %}{% endblock knn_application_light %}">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>
+                                        基本应用
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item has-treeview {% block decision_tree_open %}{% endblock decision_tree_open %}">
+                        <a href="#"
+                           class="nav-link a1 {% block decision_tree_light %}{% endblock decision_tree_light %}">
+                            <i class="nav-icon fa fa-sitemap"></i>
+                            <p>
+                                决策树
+                                <i class="fa fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{% url 'theory:DT' %}"
+                                   class="nav-link {% block dt_theory_light %}{% endblock dt_theory_light %}">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>
+                                        基本原理
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{% url 'performance:DT' %}" class="nav-link
+
+
+                                        {% block dt_performance_analyze_light %}{% endblock dt_performance_analyze_light %}">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>
+                                        性能分析
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{% url 'example:DT' %}"
+                                   class="nav-link {% block dt_application_light %}{% endblock dt_application_light %}">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>
+                                        基本应用
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item has-treeview {% block svm_open %}{% endblock svm_open %}">
+                        <a href="#" class="nav-link a1 {% block svm_light %}{% endblock svm_light %}">
+                            <i class="nav-icon fa fa-tree"></i>
+                            <p>
+                                支持向量机
+                                <i class="fa fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{% url 'theory:SVM' %}"
+                                   class="nav-link {% block svm_theory_light %}{% endblock svm_theory_light %}">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>
+                                        基本原理
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{% url 'performance:SVM' %}" class="nav-link
+
+
+                                        {% block svm_performance_analyze_light %}{% endblock svm_performance_analyze_light %}">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>
+                                        性能分析
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{% url 'example:SVM' %}" class="nav-link
+                                        {% block svm_application_light %}{% endblock svm_application_light %}">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>
+                                        基本应用
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item has-treeview {% block k_means_open %}{% endblock k_means_open %}">
+                        <a href="#" class="nav-link a1 {% block k_means_light %}{% endblock k_means_light %}">
+                            <i class="nav-icon fa fa fa-area-chart"></i>
+                            <p>
+                                k均值聚类
+                                <i class="fa fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{% url 'theory:KM' %}"
+                                   class="nav-link {% block k_means_theory_light %}{% endblock k_means_theory_light %}">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>
+                                        基本原理
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{% url 'performance:KM' %}" class="nav-link
+
+
+                                        {% block k_means_performance_analyze_light %}{% endblock k_means_performance_analyze_light %}">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>
+                                        性能分析
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{% url 'example:KM' %}" class="nav-link
+                                        {% block k_means_application_light %}{% endblock k_means_application_light %}">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>
+                                        基本应用
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item has-treeview {% block neural_network_open %}{% endblock neural_network_open %}">
+                        <a href="#"
+                           class="nav-link a1 {% block neural_network_light %}{% endblock neural_network_light %}">
+                            <i class="nav-icon fa fa-object-ungroup"></i>
+                            <p>
+                                神经网络
+                                <i class="fa fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{% url 'theory:NN' %}"
+                                   class="nav-link {% block nn_theory_light %}{% endblock nn_theory_light %}">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>
+                                        基本原理
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{% url 'performance:NN' %}" class="nav-link
+
+
+                                        {% block nn_performance_analyze_light %}{% endblock nn_performance_analyze_light %}">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>
+                                        性能分析
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{% url 'example:NN' %}"
+                                   class="nav-link {% block nn_application_light %}{% endblock nn_application_light %}">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>
+                                        基本应用
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item has-treeview {% block deep_learning_open %}{% endblock deep_learning_open %}">
+                        <a href="#"
+                           class="nav-link a1 {% block deep_learning_light %}{% endblock deep_learning_light %}">
+                            <i class="nav-icon fa fa-bomb"></i>
+                            <p>
+                                深度学习
+                                <i class="fa fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{% url 'theory:DL' %}"
+                                   class="nav-link {% block dl_theory_light %}{% endblock dl_theory_light %}">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>
+                                        基本原理
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{% url 'performance:DL' %}" class="nav-link
+
+
+
+
+                                        {% block dl_performance_analyze_light %}{% endblock dl_performance_analyze_light %}">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>
+                                        性能分析
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{% url 'example:DL' %}"
+                                   class="nav-link {% block dl_application_light %}{% endblock dl_application_light %}">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>
+                                        基本应用
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item has-treeview
+                            {% block ensemble_learning_open %}{% endblock ensemble_learning_open %}">
+                        <a href="#"
+                           class="nav-link a1
+                                   {% block ensemble_learning_light %}{% endblock ensemble_learning_light %}">
+                            <i class="nav-icon fa fa-table"></i>
+                            <p>
+                                集成学习
+                                <i class="fa fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{% url 'theory:EL' %}"
+                                   class="nav-link {% block el_theory_light %}{% endblock el_theory_light %}">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>
+                                        基本原理
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{% url 'performance:EL' %}" class="nav-link
+
+
+                                        {% block el_performance_analyze_light %}{% endblock el_performance_analyze_light %}">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>
+                                        性能分析
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{% url 'example:EL' %}"
+                                   class="nav-link {% block el_application_light %}{% endblock el_application_light %}">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>
+                                        基本应用
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-header">应用</li>
+                    <li class="nav-item">
+                        <a href="#"
+                           class="nav-link a1 {% block lpr_recognition_light %}{% endblock lpr_recognition_light %}">
+                            <i class="nav-icon fa fa-cubes"></i>
+                            <p>车牌识别</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link a1
+
+
+                                {% block traffic_sign_recognition_light %}{% endblock traffic_sign_recognition_light %}">
+                            <i class="nav-icon fa fa-object-group"></i>
+                            <p>交通标志识别</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link a1
+                                {% block handwriting_recognition_light %}{% endblock handwriting_recognition_light %}">
+                            <i class="nav-icon fa fa-th"></i>
+                            <p>手写体识别</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#"
+                           class="nav-link a1 {% block face_recognition_light %}{% endblock face_recognition_light %}">
+                            <i class="nav-icon fa fa-puzzle-piece"></i>
+                            <p>人脸识别</p>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </aside>
+    <!--左侧菜单栏-->
+    <!--右侧控制面板-->
+    <div class="content-wrapper">
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div id="collapseOne" class="panel-collapse collapse in">
+                        <div class="card card-danger">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="row1">
+                                            <form id="signupForm">
+                                                <div class="row row2">
+                                                    <div class="col-2">
+                                                        <label for="k">斜率</label>
+                                                        <input type="text" id="k" name="k" class="form-control">
+                                                    </div>
+                                                    <div class="col-2">
+                                                        <label for="b">截距</label>
+                                                        <input type="text" id="b" name="b" class="form-control"/>
+                                                    </div>
+                                                    <div class="col-2">
+                                                        <label for="N_true">标准数据个数</label>
+                                                        <input type="text" class="form-control" name="N_true"
+                                                               id="N_true">
+                                                    </div>
+                                                    <div class="col-2">
+                                                        <label for="N_noise">噪声数据个数</label>
+                                                        <input type="text" class="form-control" name="N_noise"
+                                                               id="N_noise">
+                                                    </div>
+                                                    <div class="col-2">
+                                                        <label for="mu">均值</label>
+                                                        <input type="text" class="form-control" name="mu" id="mu">
+                                                    </div>
+                                                    <div class="col-2">
+                                                        <label for="sigma">标准差</label>
+                                                        <input type="text" class="form-control" name="sigma" id="sigma">
+                                                    </div>
+                                                    <div class="col-2">
+                                                        <button type="button" class="btn btn-block btn-success btn-lg"
+                                                                id="tijiao" style="margin-top:30px;">提交
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-6">
+                            </div>
+                            <div class="col-sm-6" style="font-family: 幼圆">
+                                <ol class="breadcrumb float-sm-right">
+                                    {% if user.is_authenticated %}  <!--用户已登录-->
+                                        <li class="breadcrumb-item">
+                                            {{ user_name }}
+                                            <a href="{% url 'logout' %}">
+                                                注销
+                                            </a>
+                                        </li>
+                                    {% else %}  <!--用户未登录-->
+                                        <li class="breadcrumb-item">
+                                            <a href="{% url 'login' %}">
+                                                登录
+                                            </a>
+                                        </li>
+                                        <li class="breadcrumb-item active">
+                                            <a href="{% url 'register' %}">
+                                                注册
+                                            </a>
+                                        </li>
+                                    {% endif %}
+                                    <li style="padding-left:5rem">
+                                        <nav class="main-header navbar navbar-expand bg-white navbar-light1 border-bottom">
+                                            <ul class="navbar-nav">
+                                                <li class="nav-item">
+                                                    <a class="nav-link" data-widget="pushmen" href="#collapseOne"
+                                                       data-toggle="collapse" data-parent="#accordion"
+                                                       style="padding:0px;">
+                                                        <img src="{% static 'img/push.jpg' %}"
+                                                             style="width:20px;height:20px;"/>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                            <style>
+                                                .navbar-light1 {
+                                                    right: 7%;
+                                                    position: absolute;
+                                                    margin-left: 0;
+                                                    height: 30px;
+                                                }
+
+                                                .navbar-light {
+                                                    position: absolute;
+                                                }
+
+                                                .card-body {
+                                                    flex: 1 1 auto;
+                                                    padding: 1.25rem 5vw;
+                                                }
+
+                                                label {
+                                                    font-size: 0.5vh;
+                                                }
+
+                                                .card-danger {
+                                                    width: 100%;
+                                                    margin-left: 0.5%;
+                                                }
+
+                                                label:not(.form-check-label):not(.custom-file-label) {
+                                                {#// font-weight: 1;#} font-family: 楷体;
+                                                }
+
+                                                #collapseOne {
+                                                    width: 100%;
+                                                    margin-right: 1%;
+                                                }
+
+                                                @media only screen and (max-width: 500px) {
+
+                                                    .btn-lg {
+                                                        font-size: 16px;
+                                                    }
+
+                                                    .btn-lg {
+                                                        padding: .25rem 1rem;
+                                                        font-size: 1vmax;
+                                                    }
+                                                }
+
+                                                .sidebar-dark-primary {
+                                                    font-family: 幼圆
+                                                }
+                                            </style>
+                                        </nav>
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    <style>
+                        .row1 {
+                            position: relative;
+                            padding: 0 50px;
+                        }
+
+                        .col-2 {
+                            flex: 0 0 16.666667%;
+                            max-width: 10.666667%;
+                        }
+
+                        .row2 {
+                            padding-left: 4vw;
+                        }
+
+                        .error {
+                            color: red;
+                        }
+                    </style>
+                    {% block main_part %}
+                    {% endblock main_part %}  {# 主体部分 #}
+                </div>
+            </div>
+        </section>
+    </div>
+    <!--右侧控制面板-->
+</div>
+<!--点击当前a标签时使本身高亮，使其他a标签不高亮-->
+<script>
+    $(".a1").click(function () {
+        $('.a1').removeClass('active');
+        <!--$('#li').removeClass('menu-open');-->
+        $(this).addClass('active');
+    });
+</script>
+</body>
+</html>

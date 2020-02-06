@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title_name %}决策树原理{% endblock title_name %}
+{% block decision_tree_open %}menu-open{% endblock decision_tree_open %}
+{% block decision_tree_light %}active{% endblock decision_tree_light %}
+{% block dt_theory_light %}active{% endblock dt_theory_light %}
+{% block main_part %}
+    <h1>决策树算法原理</h1>
+    <section class="col-lg-12 connectedSortable">
+        <div id="main" style="width: 100%;height:600px;margin-top:3%;"></div>
+    </section>
+    <script>
+        var dom = document.getElementById("main");
+        var myChart = echarts.init(dom);
+        myChart.showLoading();
+        var data = {{ data|safe }};
+        var app = {};
+        option = null;
+        myChart.hideLoading();
+        myChart.setOption(option = {
+            tooltip: {
+                trigger: 'item',
+                triggerOn: 'mousemove'
+            },
+            series: [
+                {
+                    type: 'tree',
+
+                    data: [data],
+
+                    left: '2%',
+                    right: '2%',
+                    top: '8%',
+                    bottom: '20%',
+
+                    symbol: 'emptyCircle',
+                    symbolSize: 20,
+                    orient: 'TB',
+
+                    expandAndCollapse: true,
+
+                    label: {
+                        position: 'right',  // 标签的位置
+                        distance: 80,
+                        rotate: 0,  // 标签旋转多少度
+                        //verticalAlign: 'middle',
+                        align: 'right',
+                        fontSize: 15
+                    },
+                    lineStyle: {
+                        width: 5,
+                        curveness: 1
+                    },
+                    leaves: {
+                        label: {
+                            position: 'bottom',
+                            rotate: 0,  // 标签旋转多少度
+                            verticalAlign: 'middle',
+                            align: 'left'
+                        }
+                    },
+
+                    animationDurationUpdate: 750
+                }
+            ]
+        });
+
+        if (option && typeof option === "object") {
+            myChart.setOption(option, true);
+        }
+    </script>
+{% endblock main_part %}
